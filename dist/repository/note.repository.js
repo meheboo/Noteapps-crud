@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteNote = exports.updateNote = exports.getNotes = exports.createNote = void 0;
+const prisma_1 = require("../config/prisma");
+const createNote = (userId, title, content) => prisma_1.prisma.note.create({ data: { title, content, userId } });
+exports.createNote = createNote;
+const getNotes = (userId) => prisma_1.prisma.note.findMany({ where: { userId } });
+exports.getNotes = getNotes;
+const updateNote = (id, userId, data) => prisma_1.prisma.note.updateMany({ where: { id, userId }, data });
+exports.updateNote = updateNote;
+const deleteNote = (id, userId) => prisma_1.prisma.note.deleteMany({ where: { id, userId } });
+exports.deleteNote = deleteNote;
